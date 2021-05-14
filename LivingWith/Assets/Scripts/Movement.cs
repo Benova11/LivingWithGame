@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
     public bool isOnGround => onGround;
 
     [Header("Ground Collision Variables")]
-    [SerializeField] private float groundRaycastLength;
+    [SerializeField] private float groundRaycastLength ;
     private bool onGround;
 
 
@@ -108,7 +108,7 @@ public class Movement : MonoBehaviour
 
     private void CheckCollisions()
     {
-        onGround = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down),groundRaycastLength,groundLayer);
+        onGround = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down) ,groundRaycastLength,groundLayer);
     }
 
     private void OnDrawGizmos() {
