@@ -21,13 +21,13 @@ public class PlatformUp : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Movement>())
         {
-            Debug.Log("hit1");
+         
             if (Input.GetKey(KeyCode.Space))
             {
-                Debug.Log("hit3");
+              
                 if (GetComponent<Collider2D>().isTrigger == true)
                 {
-                    Debug.Log("hit4");
+                  
                     GetComponent<Collider2D>().isTrigger = false;
                 }
             }
@@ -37,7 +37,7 @@ public class PlatformUp : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Movement>())
         {
-            Debug.Log("hit2");
+            
             if (Input.GetKeyDown(KeyCode.S))
             {
                 if (GetComponent<Collider2D>().isTrigger == false)
