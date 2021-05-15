@@ -29,7 +29,7 @@ public class Bar : MonoBehaviour
 
     }
 
-    public void fillBar(float fillAmount)
+    public void fillBar(float fillAmount = 0.1f)
     {
         if (fillAmount + currentBar <= maxBar)
         {
