@@ -38,6 +38,7 @@ public class moveOnEvent : MonoBehaviour
     }
     public void goToWaypoint()
     {
+        Debug.Log("NeedToMove");
         IsActive = true;
         IsAtEndPoint = false;
         goBack = false;

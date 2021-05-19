@@ -30,10 +30,16 @@ public class Movement : MonoBehaviour
     [Header("Ground Collision Variables")]
     [SerializeField] private float groundRaycastLength ;
     private bool onGround;
+    
 
+    SpriteRenderer sr;
+    Animator animator;
+    float Horizontal;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -57,11 +63,29 @@ public class Movement : MonoBehaviour
             ApplyAirLinearDrag();
             FallMultiplier();
         }
+        HandelAnimtoin();
     }
 
+    void HandelAnimtoin()
+    {
+        if (Horizontal > 0)
+        {
+            sr.flipX = false;
+            animator.Play("Walk main character");
+        }
+        else if (Horizontal < 0)
+        {
+            sr.flipX = true;
+            animator.Play("Walk main character");
+        }else
+        {
+            animator.Play("Idle main character");
+        }
+    }
     private Vector2 GetInput()
     {
-        return new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+        Horizontal = Input.GetAxisRaw("Horizontal");
+        return new Vector2(Horizontal,Input.GetAxisRaw("Vertical"));
     }
 
     private void MoveGirl()

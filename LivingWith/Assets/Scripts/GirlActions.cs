@@ -7,11 +7,14 @@ public class GirlActions : MonoBehaviour
     public GameObject flute;
     Bar bar;
     private bool isPlayingFlute = false;
+    [SerializeField] Transform fluteTransform;
     // Start is called before the first frame update
     void Start()
     {
+        fluteTransform = transform.Find("FluteTransform");
         bar = FindObjectOfType<Bar>();
-        flute.transform.position = new Vector3(transform.position.x + 0.8f, transform.position.y - 0.5f, transform.position.z);
+        //flute.transform.position = new Vector3(transform.position.x + 0.8f, transform.position.y - 0.5f, transform.position.z);
+        flute.transform.position = fluteTransform.position;
         flute.SetActive(false);
     }
 
