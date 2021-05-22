@@ -6,6 +6,7 @@ public class TransparentBuilding : MonoBehaviour
 {
 
     [SerializeField] Color TransparentColor;
+    [SerializeField] GameObject hidePlatform;
     Color NormalColor;
     SpriteRenderer sr;
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class TransparentBuilding : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         NormalColor = sr.color;
+        hidePlatform.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,6 +22,7 @@ public class TransparentBuilding : MonoBehaviour
         if (collision.GetComponent<Movement>())
         {
             sr.color = TransparentColor;
+            hidePlatform.SetActive(true);
         }
     }
 

@@ -6,8 +6,11 @@ public class GirlActions : MonoBehaviour
 {
     public GameObject flute;
     Bar bar;
-    private bool isPlayingFlute = false;
+    private bool isPlayingGuitar = false;
     [SerializeField] Transform fluteTransform;
+
+    public bool playMode;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,32 +26,30 @@ public class GirlActions : MonoBehaviour
     {
         if (Input.GetButton("PlayFlute") && (bar.getBarValue() >= 0.0f))
         {
-            playFlute();
+            PlayGuitar();
+          
         }
-        else if (isPlayingFlute)
+        else if (isPlayingGuitar)
         {
-            isPlayingFlute = false;
-            hideFlute();
+            isPlayingGuitar = false;
+            HideGuitar();
+        
         }
     }
 
-    public void playFlute()
+     void PlayGuitar()
     {
         if (bar.getBarValue() > 0)
         {
-            isPlayingFlute = true;
+            isPlayingGuitar = true; 
+            playMode = true;
             bar.decreaseBar();
-
-            if (!flute.active)
-            {
-                flute.SetActive(true);
-            }
-            
+       
         }
     }
 
-    public void hideFlute()
-    {
-        flute.SetActive(false);
+    public void HideGuitar()
+    {   
+    playMode = false;
     }
 }

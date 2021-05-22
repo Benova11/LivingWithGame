@@ -36,10 +36,13 @@ public class Movement : MonoBehaviour
     Animator animator;
     float Horizontal;
 
+    GirlActions girlActions;
+
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        girlActions = GetComponent<GirlActions>();
     }
 
     void Update()
@@ -71,15 +74,43 @@ public class Movement : MonoBehaviour
         if (Horizontal > 0)
         {
             sr.flipX = false;
-            animator.Play("Walk main character");
+            animator.SetBool("inMove", true);
+
+            if (girlActions.playMode == true)
+            {
+                animator.SetBool("inPlayMode", true);
+            }
+            else
+            {
+                animator.SetBool("inPlayMode", false);
+            }
         }
         else if (Horizontal < 0)
         {
             sr.flipX = true;
-            animator.Play("Walk main character");
-        }else
+            animator.SetBool("inMove", true);
+
+            if (girlActions.playMode == true)
+            {
+                animator.SetBool("inPlayMode", true);
+            }
+            else
+            {
+                animator.SetBool("inPlayMode", false);
+            }
+        }
+        else
         {
-            animator.Play("Idle main character");
+            animator.SetBool("inMove", false);
+
+            if (girlActions.playMode == true)
+            {
+                animator.SetBool("inPlayMode", true);
+            }
+            else
+            {
+                animator.SetBool("inPlayMode", false);
+            }
         }
     }
     private Vector2 GetInput()
