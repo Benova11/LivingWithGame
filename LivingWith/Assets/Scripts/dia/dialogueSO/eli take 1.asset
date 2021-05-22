@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c588e5de90fb34b97657f6c6f12702, type: 3}
+  m_Name: eli take 1
+  m_EditorClassIdentifier: 
+  OwnerDialogue: 'Tony Stark:'
+  dialogueText: You're all right?
+  IsThisTheFinlelLine: 0
+  IsThisTheFirstLine: 0
+  nextLine: {fileID: 11400000, guid: 6bebb92f399c18e449278fb9733ea87c, type: 2}
+  preLine: {fileID: 11400000, guid: 517f40bbef71eae4e8214780f4bb9d2d, type: 2}
+  DidHeShowUp: 1

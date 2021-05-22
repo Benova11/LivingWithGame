@@ -10,6 +10,7 @@ public class FixedCameraPoint : MonoBehaviour
     [SerializeField] float MaximumHeightToFollow ;
     float MaximumHeightToFollowFixt = 30;
     float y;
+    [SerializeField] Transform underGruandWaypoint;
    
     // Start is called before the first frame update
     void Start()
@@ -31,10 +32,16 @@ public class FixedCameraPoint : MonoBehaviour
             newPos = new Vector3(player.position.x, MaximumHeightToFollow / 2, transform.position.z);
             MaximumHeightToFollow -= MaximumHeightToFollowToAdd;
         }
-        else if (player.position.y < MaximumHeightToFollowFixt)
+        else if (player.position.y < MaximumHeightToFollowFixt && player.position.y > y)
         {
             MaximumHeightToFollow = MaximumHeightToFollowFixt;
             newPos = new Vector3(player.position.x, y, transform.position.z);
+        }
+        else if (player.position.y < y-1f)
+        {
+
+            Debug.Log("underGrund");
+            newPos = underGruandWaypoint.position;
         }
         transform.position = newPos;
     }
