@@ -6,8 +6,8 @@ public class FixedCameraPoint : MonoBehaviour
 {
     [SerializeField] Transform player;
     Vector3 newPos;
-   [SerializeField] float MaximumHeightToFollowToAdd = 45;
-    [SerializeField] float MaximumHeightToFollow =0f ;
+    float MaximumHeightToFollowToAdd = 30;
+    [SerializeField] float MaximumHeightToFollow ;
     float MaximumHeightToFollowFixt = 30;
     float y;
     [SerializeField] Transform underGruandWaypoint;
@@ -22,22 +22,17 @@ public class FixedCameraPoint : MonoBehaviour
     void Update()
     {
         newPos = new Vector3(player.position.x, transform.position.y, transform.position.z);
-        
-        ///// 0         //////    0
-        if (player.position.y > MaximumHeightToFollow )
+        if (player.position.y > MaximumHeightToFollow)
         {
-            
             newPos = new Vector3(player.position.x, MaximumHeightToFollow/2, transform.position.z);
             MaximumHeightToFollow += MaximumHeightToFollowToAdd;
         }
-      
         else if (player.position.y < MaximumHeightToFollow - MaximumHeightToFollowFixt && player.position.y > MaximumHeightToFollowFixt)
-        { 
+        {
+            newPos = new Vector3(player.position.x, MaximumHeightToFollow / 2, transform.position.z);
             MaximumHeightToFollow -= MaximumHeightToFollowToAdd;
-            newPos = new Vector3(player.position.x, MaximumHeightToFollow / 2.1f, transform.position.z);
-           
         }
-        else if (player.position.y < MaximumHeightToFollowFixt+2 && player.position.y > y)
+        else if (player.position.y < MaximumHeightToFollowFixt && player.position.y > y)
         {
             MaximumHeightToFollow = MaximumHeightToFollowFixt;
             newPos = new Vector3(player.position.x, y, transform.position.z);
@@ -49,7 +44,5 @@ public class FixedCameraPoint : MonoBehaviour
             newPos = underGruandWaypoint.position;
         }
         transform.position = newPos;
-
-       
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     int currentSceneIndex;
-    [SerializeField] int nextLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +15,5 @@ public class LevelLoader : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadScene(currentSceneIndex + 1);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        SceneManager.LoadScene(nextLevel);
     }
 }
