@@ -26,7 +26,9 @@ public class Movement : MonoBehaviour
     private int extraJumpsValue;
     private bool canJump => Input.GetButtonDown("Jump") && (onGround || extraJumpsValue > 0);
     public bool isOnGround => onGround;
-
+    AudioSource _AudioSource;
+    [SerializeField]AudioSource _AudioSource2;
+    [SerializeField] AudioClip[] alice_walk_s;
     [Header("Ground Collision Variables")]
     [SerializeField] private float groundRaycastLength ;
     private bool onGround;
@@ -35,14 +37,18 @@ public class Movement : MonoBehaviour
     SpriteRenderer sr;
     Animator animator;
     float Horizontal;
-
+    int randomNam ;
+    int index;
     GirlActions girlActions;
+   [SerializeField] private AudioClip alice_guitar_s;
 
     private void Start() {
+        randomNam = Random.Range(0, alice_walk_s.Length);
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         girlActions = GetComponent<GirlActions>();
+        _AudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -52,6 +58,10 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
         if (canJump) Jump();
+        if (index >= alice_walk_s.Length)
+        {
+            index = 0;
+        }
     }
 
     private void FixedUpdate(){
@@ -71,8 +81,10 @@ public class Movement : MonoBehaviour
 
     void HandelAnimtoin()
     {
+     
         if (Horizontal > 0)
         {
+            
             sr.flipX = false;
             animator.SetBool("inMove", true);
 
@@ -169,5 +181,43 @@ public class Movement : MonoBehaviour
     private void OnDrawGizmos() {
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundRaycastLength);
+    }
+
+    public void stepSound()
+    {
+
+
+        _AudioSource.clip = null;
+        _AudioSource.Stop();
+     
+        _AudioSource.PlayOneShot(alice_walk_s[index]);
+        _AudioSource2.Stop();
+        index++;
+ 
+    }
+
+    public void alice_guitar_Sound()
+    {
+
+        if (!_AudioSource2.isPlaying)
+        {
+            _AudioSource2.Play();
+        }
+
+
+    }  
+    public void alice_standing()
+    {
+        _AudioSource.clip = null;
+        _AudioSource.Stop();
+        _AudioSource2.Stop();
+    }
+    public void alice_guitar_Sound_While_standing()
+    {
+        if (!_AudioSource2.isPlaying )
+        {
+            _AudioSource2.Play();
+        }
+
     }
 }

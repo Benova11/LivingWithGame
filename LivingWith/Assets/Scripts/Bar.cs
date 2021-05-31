@@ -8,6 +8,7 @@ public class Bar : MonoBehaviour
     float currentBar;
     public float maxBar = 3.0f;
     public float deacreseTmp = 0.1f;
+    public float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +25,11 @@ public class Bar : MonoBehaviour
 
     public void decreaseBar()
     {
-        currentBar -= deacreseTmp;
+        timer += Time.deltaTime;
+        currentBar -= Time.deltaTime;
         GetComponent<Slider>().value = currentBar;
+        
+     
 
     }
 
@@ -34,6 +38,7 @@ public class Bar : MonoBehaviour
         if (fillAmount + currentBar <= maxBar)
         {
             currentBar += fillAmount;
+           
         }
         else
         {
