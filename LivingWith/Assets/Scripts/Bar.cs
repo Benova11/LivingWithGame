@@ -12,7 +12,7 @@ public class Bar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentBar = maxBar;
+        currentBar = 0;
         GetComponent<Slider>().maxValue = maxBar;
         GetComponent<Slider>().value = currentBar;
     }
@@ -20,7 +20,10 @@ public class Bar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.M))
+            {
+            fillBar(3);
+        }
     }
 
     public void decreaseBar()

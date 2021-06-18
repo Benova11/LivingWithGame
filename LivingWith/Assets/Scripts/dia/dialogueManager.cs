@@ -10,9 +10,11 @@ public class dialogueManager : MonoBehaviour
    [SerializeField] TextMeshProUGUI DialogueTextObject;
    [SerializeField] TextMeshProUGUI DialogueOwnerTextObject;
     [SerializeField] GameObject textBox;
+    
 
 
     bool isOn = true;
+    bool isTheEndOfTheText =false ;
     private void Start()
     {
         curDialogue = startDialogueFile;
@@ -24,7 +26,14 @@ public class dialogueManager : MonoBehaviour
     {
         goNextLine();
         goPreLine();
-      
+
+        if (curDialogue.IsThisTheFinlelLine && isTheEndOfTheText)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                GetComponentInChildren<Animator>().Play("run away");
+            }
+        }
     }
     IEnumerator startDialog()
     {
@@ -32,22 +41,28 @@ public class dialogueManager : MonoBehaviour
         DialogueOwnerTextObject.text = curDialogue.OwnerDialogue;
         foreach (var h in curDialogue.dialogueText)
         {
+            isTheEndOfTheText = false;
             tampText += h;  
             yield return new WaitForSeconds(0.01f);          
             DialogueTextObject.text = tampText;
+            
         }
+        isTheEndOfTheText = true;
        
     }
     void goNextLine()
     {
+     
         if (!curDialogue.IsThisTheFinlelLine && curDialogue.nextLine && isOn)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 curDialogue = curDialogue.nextLine;
                 StartCoroutine(startDialog());
+
             }
         }
+       
     }   
     void goPreLine()
     {

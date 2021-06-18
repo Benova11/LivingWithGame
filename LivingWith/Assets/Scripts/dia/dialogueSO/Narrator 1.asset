@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c588e5de90fb34b97657f6c6f12702, type: 3}
+  m_Name: Narrator 1
+  m_EditorClassIdentifier: 
+  OwnerDialogue: Narrator
+  dialogueText: As Alice gets closer to the fire she realizes that she is not alone
+  IsThisTheFinlelLine: 0
+  IsThisTheFirstLine: 1
+  nextLine: {fileID: 11400000, guid: cd29e08a162d42f41b7cb841f33c6660, type: 2}
+  preLine: {fileID: 0}
+  DidHeShowUp: 0

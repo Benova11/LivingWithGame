@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
     AudioSource _AudioSource;
     [SerializeField]AudioSource _AudioSource2;
     [SerializeField] AudioClip[] alice_walk_s;
+    [SerializeField] AudioClip alice_Cant_play;
     [Header("Ground Collision Variables")]
     [SerializeField] private float groundRaycastLength ;
     private bool onGround;
@@ -62,6 +63,7 @@ public class Movement : MonoBehaviour
         {
             index = 0;
         }
+        
     }
 
     private void FixedUpdate(){
@@ -69,14 +71,24 @@ public class Movement : MonoBehaviour
         MoveGirl();
         if (onGround){
             extraJumpsValue = extraJumps;
+     
+                animator.SetBool("inTheAir", false); 
+            
             //if (horizontalDirection != 0 ){
             //ApplyGroundLinearDrag();
             //}
-        }else{
+        }
+        else{
             ApplyAirLinearDrag();
             FallMultiplier();
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("jump alice"))
+            {
+                animator.SetBool("inTheAir", true);
+            }
         }
         HandelAnimtoin();
+
+        //animator.SetBool("inTheAir", !onGround);
     }
 
     void HandelAnimtoin()
