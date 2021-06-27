@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/nisim junkYard.unity
     guid: b1348d81c5e82dd44bdda7e10a4924a9
+  - enabled: 1
+    path: Assets/Scenes/nisim junkYard2.unity
+    guid: 07d23209829d60743a2196d59c2456ab
   m_configObjects: {}
